@@ -39,6 +39,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    @Transactional
     public void withdrawal(Long id) {
         User findUser = userRepository.findById(id);
         userRepository.delete(findUser);
