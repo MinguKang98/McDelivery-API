@@ -57,10 +57,28 @@ class UserServiceTest {
 
         ///when
         Long saveId = userService.join(user);
+        userService.withdrawal(saveId);
 
         //then
-        userService.withdrawal(saveId);
         assertThat(userService.findUserById(saveId)).isNull();
+    }
+
+    @Test
+    public void 회원_정보_수정() throws Exception {
+        //given
+        User user1 = User.createUser("kang", "mintgreen", "kang@naver.com", "1234",
+                new Address("서울시", "한천로37길 33", "101-101"));
+        User user2 = User.createUser("kim", "mintgreen", "kang@naver.com", "5678",
+                new Address("서울시", "한천로37길 33", "101-101"));
+
+        ///when
+        Long saveId = userService.join(user1);
+        userService.update(saveId, user2);
+
+        //then
+        User findUser = userService.findUserById(saveId);
+        assertThat(findUser.getName()).isEqualTo(user2.getName());
+        assertThat(findUser.getPassword()).isEqualTo(user2.getPassword());
     }
 
 }

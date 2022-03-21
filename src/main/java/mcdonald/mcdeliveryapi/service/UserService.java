@@ -44,4 +44,9 @@ public class UserService {
         User findUser = userRepository.findById(id);
         userRepository.delete(findUser);
     }
+
+    public void update(Long id, User user) {
+        User findUser = userRepository.findById(id);
+        findUser.changeUser(user);
+    }
 }

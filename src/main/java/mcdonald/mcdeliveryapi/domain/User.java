@@ -38,4 +38,12 @@ public class User {
 
         return user;
     }
+
+    public void changeUser(User user) {
+        user.setName(name);
+        user.setNickname(nickname);
+        user.setEmail(email);
+        user.setPassword(password);
+        user.setAddress(address);
+    }
 }
