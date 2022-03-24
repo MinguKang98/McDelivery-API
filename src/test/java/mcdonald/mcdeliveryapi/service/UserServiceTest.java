@@ -77,8 +77,7 @@ class UserServiceTest {
 
         //then
         User findUser = userService.findUserById(saveId);
-        assertThat(findUser.getName()).isEqualTo(user2.getName());
-        assertThat(findUser.getPassword()).isEqualTo(user2.getPassword());
+        assertThat(findUser).isEqualTo(user2);
     }
 
 }
