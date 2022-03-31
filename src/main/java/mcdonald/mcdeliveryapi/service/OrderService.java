@@ -8,9 +8,6 @@ import mcdonald.mcdeliveryapi.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
-import java.util.List;
-
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -20,7 +17,7 @@ public class OrderService {
     private final OrderRepository orderRepository;
 
 
-    public Long order(Long userId, Long itemId, int count, int expectedTime) {
+    public Long order(Long userId, Long itemId, int count) {
         // user
         User findUser = userRepository.findById(userId);
 
