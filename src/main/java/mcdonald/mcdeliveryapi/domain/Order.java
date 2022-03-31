@@ -29,6 +29,7 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> orderItems = new ArrayList<>();
 
+    @Enumerated(value = EnumType.STRING)
     private OrderStatus status;
 
     /* 연관관계 메서드 */
