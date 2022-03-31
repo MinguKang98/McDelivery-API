@@ -28,7 +28,7 @@ public class User {
     @Embedded
     private Address address;
 
-    /* 생성메서드 */
+    /* 생성자 메서드 */
     public static User createUser(String name, String nickname, String email, String password, Address address) {
         User user = new User();
         user.setName(name);
