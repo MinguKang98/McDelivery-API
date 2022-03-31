@@ -17,6 +17,10 @@ public class OrderRepository {
         em.persist(order);
     }
 
+    public void delete(Order order) {
+        em.remove(order);
+    }
+
     public Order findById(Long id) {
         return em.find(Order.class, id);
     }

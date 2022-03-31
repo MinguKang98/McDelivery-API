@@ -21,7 +21,7 @@ public class Item {
 
     private int price;
 
-    /* 생성메서드 */
+    /* 생성자 메서드 */
     public static Item createItem(String name, int price) {
         Item item = new Item();
         item.setName(name);
