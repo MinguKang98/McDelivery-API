@@ -3,6 +3,7 @@ package mcdonald.mcdeliveryapi.domain;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import mcdonald.mcdeliveryapi.controller.ItemDTO;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -46,5 +47,12 @@ public class Item {
     @Override
     public int hashCode() {
         return Objects.hash(getName(), getPrice());
+    }
+
+    public ItemDTO toItemDTO() {
+        ItemDTO itemDTO = new ItemDTO();
+        itemDTO.setName(name);
+        itemDTO.setPrice(price);
+        return  itemDTO;
     }
 }
