@@ -1,11 +1,13 @@
 package mcdonald.mcdeliveryapi.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Embeddable;
 
 @Embeddable
+@Getter
 public class Address {
 
     private String city;
