@@ -33,7 +33,7 @@ public class ItemService {
         return itemRepository.findById(id);
     }
 
-    public List<Item> findAllItem(Long id) {
+    public List<Item> findAllItem() {
         return itemRepository.findAll();
     }
 
