@@ -3,6 +3,7 @@ package mcdonald.mcdeliveryapi.domain;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import mcdonald.mcdeliveryapi.controller.UserDTO;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -46,6 +47,19 @@ public class User {
         this.email = user.getEmail();
         this.password = user.getPassword();
         this.address = user.getAddress();
+    }
+
+    // User to UserForm
+    public UserDTO toUserDTO(){
+        UserDTO form = new UserDTO();
+        form.setName(this.getName());
+        form.setNickname(this.getNickname());
+        form.setEmail(this.getEmail());
+        form.setPassword(this.getPassword());
+        form.setCity(this.getAddress().getCity());
+        form.setStreet(this.getAddress().getStreet());
+        form.setZipcode(this.getAddress().getZipcode());
+        return form;
     }
 
     @Override
