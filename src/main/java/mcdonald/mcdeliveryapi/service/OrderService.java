@@ -40,7 +40,9 @@ public class OrderService {
     @Transactional
     public void cancelOrder(Long id) {
         Order order = orderRepository.findById(id);
-        order.changeOrderStatus(OrderStatus.CANCEL);
+        if (order.getStatus() == OrderStatus.READY && order.getDelivery().getStatus() == DeliveryStatus.READY) {
+            order.changeOrderStatus(OrderStatus.CANCEL);
+        }
     }
 
     @Transactional
@@ -52,21 +54,25 @@ public class OrderService {
     @Transactional
     public void startDelivery(Long id) {
         Order order = orderRepository.findById(id);
-        order.getDelivery().changeDeliveryStatus(DeliveryStatus.RUNNING);
+        if(order.getStatus()==OrderStatus.READY){
+            order.getDelivery().changeDeliveryStatus(DeliveryStatus.RUNNING);
+        }
     }
 
     @Transactional
     public void completeDeliveryAndOrder(Long id) {
         Order order = orderRepository.findById(id);
-        order.getDelivery().changeDeliveryStatus(DeliveryStatus.COMPLETE);
-        order.changeOrderStatus(OrderStatus.DONE);
+        if (order.getStatus() == OrderStatus.READY && order.getDelivery().getStatus() == DeliveryStatus.RUNNING) {
+            order.getDelivery().changeDeliveryStatus(DeliveryStatus.COMPLETE);
+            order.changeOrderStatus(OrderStatus.DONE);
+        }
     }
 
     public Order findOrderById(Long id) {
         return orderRepository.findById(id);
     }
 
-    public List<Order> findAllOrder(Long id) {
+    public List<Order> findAllOrder() {
         return orderRepository.findAll();
     }
 }
