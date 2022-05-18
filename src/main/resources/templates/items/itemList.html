@@ -20,10 +20,14 @@
                 <td th:text="${item.name}"></td>
                 <td th:text="${item.price}"></td>
                 <td>
-                    <a href="#" th:href="@{/items/{id}/update (id=${item.id})}" method="get" class="btn btn-primary" role="button">수정</a>
+                    <form role="form" th:action="@{/items/{id}/update (id=${item.id})}" method="get">
+                        <button type="submit" class="btn btn-primary">수정</button>
+                    </form>
                 </td>
                 <td>
-                    <a href="#" th:href="@{/items/{id}/delete (id=${item.id})}" method="post" class="btn btn-primary" role="button">삭제</a>
+                    <form role="form" th:action="@{/items/{id}/delete (id=${item.id})}" method="post">
+                        <button type="submit" class="btn btn-primary">삭제</button>
+                    </form>
                 </td>
             </tr>
             </tbody>

@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header" />
+<body>
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader" />
+    <div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>주문자</th>
+                <th>상품</th>
+                <th>수량</th>
+                <th>가격</th>
+                <th>주문상태</th>
+                <th>배송상태</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="order : ${orders}">
+                <td th:text="${order.id}"></td>
+                <td th:text="${order.getUser().getName()}"></td>
+                <td th:text="${order.getOrderItems().get(0).getItem().getName()}"></td>
+                <td th:text="${order.getOrderItems().get(0).getCount()}"></td>
+                <td th:text="${order.getOrderItems().get(0).getTotalPrice()}"></td>
+                <td th:text="${order.status}"></td>
+                <td th:text="${order.getDelivery().getStatus()}"></td>
+                <td>
+                    <form role="form" th:action="@{/orders/{id}/cancel (id=${order.id})}" method="post">
+                        <button type="submit" class="btn btn-primary">주문 취소</button>
+                    </form>
+                </td>
+                <td>
+                    <form role="form" th:action="@{/orders/{id}/delivery/start (id=${order.id})}" method="post">
+                        <button type="submit" class="btn btn-primary">배달 시작</button>
+                    </form>
+                </td>
+                <td>
+                    <form role="form" th:action="@{/orders/{id}/delivery/complete (id=${order.id})}" method="post">
+                        <button type="submit" class="btn btn-primary">배달 완료</button>
+                    </form>
+                </td>
+                <td>
+                    <form role="form" th:action="@{/orders/{id}/delete (id=${order.id})}" method="post">
+                        <button type="submit" class="btn btn-primary">주문 삭제</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:replace="fragments/footer :: footer" />
+</div> <!-- /container -->
+</body>
+</html>
