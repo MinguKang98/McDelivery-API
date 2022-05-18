@@ -59,7 +59,7 @@ public class UserController {
         return "redirect:/users";
     }
 
-    @GetMapping("/users/{userId}/delete")
+    @PostMapping("/users/{userId}/delete")
     public String deleteUser(@PathVariable("userId") Long userId) {
         userService.withdrawal(userId);
         return "redirect:/users";

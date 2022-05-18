@@ -59,9 +59,8 @@ public class ItemController {
         return "redirect:/items";
     }
 
-    @GetMapping("/items/{itemId}/delete")
+    @PostMapping("/items/{itemId}/delete")
     public String deleteItem(@PathVariable("itemId") Long itemId) {
-        Item findItem = itemService.findItemById(itemId);
         itemService.withdrawal(itemId);
         return "redirect:/items";
     }

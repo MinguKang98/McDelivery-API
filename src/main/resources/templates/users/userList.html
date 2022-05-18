@@ -28,10 +28,14 @@
                 <td th:text="${user.address?.street}"></td>
                 <td th:text="${user.address?.zipcode}"></td>
                 <td>
-                    <a href="#" th:href="@{/users/{id}/update (id=${user.id})}" class="btn btn-primary" role="button">수정</a>
+                    <form role="form" th:action="@{/users/{id}/update (id=${user.id})}" method="get">
+                        <button type="submit" class="btn btn-primary">수정</button>
+                    </form>
                 </td>
                 <td>
-                    <a href="#" th:href="@{/users/{id}/delete (id=${user.id})}" class="btn btn-primary" role="button">삭제</a>
+                    <form role="form" th:action="@{/users/{id}/delete (id=${user.id})}" method="post">
+                        <button type="submit" class="btn btn-primary">삭제</button>
+                    </form>
                 </td>
             </tr>
             </tbody>
